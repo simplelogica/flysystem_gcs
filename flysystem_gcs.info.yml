@@ -1,0 +1,8 @@
+name: Flysystem GCS
+type: module
+description: 'Provides a Google cloud storage plugin for Flysystem.'
+core: 8.x
+package: Flysystem
+version: 8.0-dev
+dependencies:
+  - flysystem
