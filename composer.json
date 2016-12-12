@@ -1,7 +1,8 @@
 {
   "name": "drupal/flysystem_gcs",
+  "type": "drupal-module",
   "require": {
     "league/flysystem": "^1.0.3",
-    "superbalist/flysystem-google-storage": "dev-master#5129555",
+    "superbalist/flysystem-google-storage": "dev-master#5129555"
   }
 }
