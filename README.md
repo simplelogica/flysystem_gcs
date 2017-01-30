@@ -9,6 +9,12 @@ Flysystem library of The PHP League is required. GoogleStorageAdapter adapter of
 
 For setup instructions see the Flysystem README.md.
 
+**IMPORTANT**: due to Drupal's new repository semantic versioning, this module is only compatible with projects using new repository.
+
+If you are using `https://packagist.drupal-composer.org` , you must use this project in commit `56f60acaa6a148ed40b7b3041add9533a49b26e5` or before.
+
+More information [here](https://www.drupal.org/node/2822344).
+
 ## CONFIGURATION ##
 
 Example configuration:

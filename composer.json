@@ -5,7 +5,7 @@
   "require": {
     "league/flysystem": "^1.0.3",
     "superbalist/flysystem-google-storage": "3.0.4",
-    "drupal/flysystem": "8.1.0-alpha4"
+    "drupal/flysystem": "1.0.0-alpha4"
   },
   "minimum-stability": "dev"
 }
