@@ -53,12 +53,19 @@ class CloudStorage implements FlysystemPluginInterface, ContainerFactoryPluginIn
    */
   protected $storageApiUri;
 
+    /**
+   * The URL prefix.
+   *
+   * @var string
+   */
+  protected $urlPrefix;
+
   /**
- * The URL prefix.
- *
- * @var string
- */
-protected $urlPrefix;
+   * The current scheme configuration
+   *
+   * @var League\Flysystem\Config $config
+   */
+  protected $config;
 
   /**
    * Constructs a CloudStorage object.
@@ -70,6 +77,7 @@ protected $urlPrefix;
    */
   public function __construct(StorageClient $client, Config $config) {
     $this->client = $client;
+    $this->config = $config;
     $this->bucket = $this->client->bucket($config->get('bucket', ''));
     $this->prefix = $config->get('prefix', '');
     $this->storageApiUri = self::calculateStoreApiUri($config);
