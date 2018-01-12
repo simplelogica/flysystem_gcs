@@ -186,7 +186,7 @@ protected $urlPrefix;
    * @return string
    *   The uri in the form protocol://domain
    */
-  private static function calculateStoreApiUri(Config $config) {
+  public static function calculateStoreApiUri(Config $config) {
     $protocol = $config->get('protocol', 'https');
 
     $default_cname = 'storage.googleapis.com';
