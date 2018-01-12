@@ -72,8 +72,8 @@ protected $urlPrefix;
     $this->client = $client;
     $this->bucket = $this->client->bucket($config->get('bucket', ''));
     $this->prefix = $config->get('prefix', '');
-    $this->storageApiUri = $this->calculateStoreApiUri($config);
-    $this->urlPrefix = $this->calculateUrlPrefix($config);
+    $this->storageApiUri = self::calculateStoreApiUri($config);
+    $this->urlPrefix = self::calculateUrlPrefix($config);
   }
 
   /**
@@ -142,16 +142,16 @@ protected $urlPrefix;
    * @return string
    *   The URL prefix in the form protocol://cname[/bucket][/prefix].
    */
-  private function calculateUrlPrefix(Config $config) {
+  private static function calculateUrlPrefix(Config $config) {
 
     $bucket = (string) $config->get('bucket', '');
 
-    $uri = $this->calculateStoreApiUri($config);
+    $uri = self::calculateStoreApiUri($config);
 
     $prefix = (string) $config->get('prefix', '');
     $prefix = $prefix === '' ? '' : '/' . UrlHelper::encodePath($prefix);
 
-    if ($this->isCnameVirtualHosted($uri, $bucket)) {
+    if (self::isCnameVirtualHosted($uri, $bucket)) {
       return $uri . $prefix;
     }
 
@@ -173,7 +173,7 @@ protected $urlPrefix;
    *
    * @see http://docs.aws.amazon.com/AmazonS3/latest/dev/VirtualHosting.html
    */
-  private function isCnameVirtualHosted($uri, $bucket) {
+  private static function isCnameVirtualHosted($uri, $bucket) {
     return $bucket === '' || strpos($uri, $bucket) === 0;
   }
 
@@ -186,7 +186,7 @@ protected $urlPrefix;
    * @return string
    *   The uri in the form protocol://domain
    */
-  private function calculateStoreApiUri(Config $config) {
+  private static function calculateStoreApiUri(Config $config) {
     $protocol = $config->get('protocol', 'https');
 
     $default_cname = 'storage.googleapis.com';
