@@ -17,10 +17,18 @@ use League\Flysystem\Config;
 class CloudStorageAdapter extends GoogleStorageAdapter {
 
   /**
+   * The current scheme configuration
+   *
+   * @var League\Flysystem\Config $config
+   */
+  protected $config;
+
+  /**
    * @param Google\Cloud\Storage\StorageClient $client
    * @param League\Flysystem\Config $config
    */
   public function __construct(StorageClient $storageClient, Config $config) {
+    $this->config = $config;
     $bucket = $storageClient->bucket($config->get('bucket', ''));
     $prefix = $config->get('prefix', '');
     $storageApiUri = CloudStorage::calculateStoreApiUri($config);
@@ -65,7 +73,7 @@ class CloudStorageAdapter extends GoogleStorageAdapter {
   protected function upload($path, $contents, Config $config) {
     $path = $this->applyPathPrefix($path);
 
-    $options = $this->getOptionsFromConfig($config);
+    $options = $this->getOptionsFromConfig($config ? $config : $this->config);
     $options['name'] = $path;
 
     $object = $this->bucket->upload($contents, $options);
