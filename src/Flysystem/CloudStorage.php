@@ -39,20 +39,6 @@ class CloudStorage implements FlysystemPluginInterface, ContainerFactoryPluginIn
    */
   protected $client;
 
-  /**
-   * The path prefix inside the bucket.
-   *
-   * @var string
-   */
-  protected $prefix;
-
-  /**
-   * The uri of the storage api
-   *
-   * @var string
-   */
-  protected $storageApiUri;
-
     /**
    * The URL prefix.
    *
@@ -78,9 +64,7 @@ class CloudStorage implements FlysystemPluginInterface, ContainerFactoryPluginIn
   public function __construct(StorageClient $client, Config $config) {
     $this->client = $client;
     $this->config = $config;
-    $this->bucket = $this->client->bucket($config->get('bucket', ''));
-    $this->prefix = $config->get('prefix', '');
-    $this->storageApiUri = self::calculateStoreApiUri($config);
+    $this->bucket = $client->bucket($config->get('bucket', ''));
     $this->urlPrefix = self::calculateUrlPrefix($config);
   }
 
