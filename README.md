@@ -37,6 +37,13 @@ $schemes = [
       'protocol' => '', // Optional (http|https). Default: https. Autodetected based on the current request if not provided.
       'cname' => 'static.example.com', // Optional. A CNAME that resolves to your bucket. Used for URL generation.
     ],
+  'public' => [
+    'driver' => 'CloudStorage',
+    'config' => [
+      'keyFilePath' => 'path/to/json',
+      'bucket' => 'BUCKET',
+      'public' => true, // Optional. If set, the scheme must be called 'public'. Uses bucket storage for all the files within web/sites/site/files instead of local storage.
+    ],
   ],
 ];
 ```
