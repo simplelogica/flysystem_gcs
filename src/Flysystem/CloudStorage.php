@@ -107,7 +107,7 @@ class CloudStorage implements FlysystemPluginInterface, ContainerFactoryPluginIn
    * {@inheritdoc}
    */
   public function getAdapter() {
-    return new CloudStorageAdapter($this->client, $this->bucket, $this->prefix, $this->storageApiUri);
+    return new CloudStorageAdapter($this->client, $this->config);
   }
 
   /**

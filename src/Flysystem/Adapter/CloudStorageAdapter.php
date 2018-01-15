@@ -2,8 +2,10 @@
 
 namespace Drupal\flysystem_gcs\Flysystem\Adapter;
 
+use Drupal\flysystem_gcs\Flysystem\CloudStorage;
 use Superbalist\Flysystem\GoogleStorage\GoogleStorageAdapter;
 
+use Google\Cloud\Storage\StorageClient;
 use League\Flysystem\AdapterInterface;
 use League\Flysystem\Config;
 
@@ -13,6 +15,18 @@ use League\Flysystem\Config;
  * Based on methods of S3Adapter class (contrib module flysystem_s3)
  */
 class CloudStorageAdapter extends GoogleStorageAdapter {
+
+  /**
+   * @param Google\Cloud\Storage\StorageClient $client
+   * @param League\Flysystem\Config $config
+   */
+  public function __construct(StorageClient $storageClient, Config $config) {
+    $bucket = $storageClient->bucket($config->get('bucket', ''));
+    $prefix = $config->get('prefix', '');
+    $storageApiUri = CloudStorage::calculateStoreApiUri($config);
+
+    parent::__construct($storageClient, $bucket, $prefix, $storageApiUri);
+  }
 
   /**
    * {@inheritdoc}
@@ -50,7 +64,7 @@ class CloudStorageAdapter extends GoogleStorageAdapter {
    */
   protected function upload($path, $contents, Config $config) {
     $path = $this->applyPathPrefix($path);
-    
+
     $options = $this->getOptionsFromConfig($config);
     $options['name'] = $path;
 
