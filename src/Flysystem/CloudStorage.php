@@ -28,14 +28,14 @@ class CloudStorage implements FlysystemPluginInterface, ContainerFactoryPluginIn
   /**
    * The gcs bucket.
    *
-   * @var Google\Cloud\Storage\Bucket
+   * @var \Google\Cloud\Storage\Bucket
    */
   protected $bucket;
 
   /**
    * The gcs client.
    *
-   * @var Google\Cloud\Storage\StorageClient
+   * @var \Google\Cloud\Storage\StorageClient
    */
   protected $client;
 
@@ -49,16 +49,16 @@ class CloudStorage implements FlysystemPluginInterface, ContainerFactoryPluginIn
   /**
    * The current scheme configuration
    *
-   * @var League\Flysystem\Config $config
+   * @var \League\Flysystem\Config $config
    */
   protected $config;
 
   /**
    * Constructs a CloudStorage object.
    *
-   * @param Google\Cloud\Storage\StorageClient $client
+   * @param \Google\Cloud\Storage\StorageClient $client
    *   The AWS client.
-   * @param League\Flysystem\Config $config
+   * @param \League\Flysystem\Config $config
    *   The configuration.
    */
   public function __construct(StorageClient $client, Config $config) {
@@ -178,7 +178,7 @@ class CloudStorage implements FlysystemPluginInterface, ContainerFactoryPluginIn
   /**
    * Calculates the URL prefix.
    *
-   * @param League\Flysystem\Config $config
+   * @param \League\Flysystem\Config $config
    *   The configuration.
    *
    * @return string

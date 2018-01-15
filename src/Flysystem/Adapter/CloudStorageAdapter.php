@@ -19,13 +19,13 @@ class CloudStorageAdapter extends GoogleStorageAdapter {
   /**
    * The current scheme configuration
    *
-   * @var League\Flysystem\Config $config
+   * @var \League\Flysystem\Config $config
    */
   protected $config;
 
   /**
-   * @param Google\Cloud\Storage\StorageClient $client
-   * @param League\Flysystem\Config $config
+   * @param \Google\Cloud\Storage\StorageClient $client
+   * @param \League\Flysystem\Config $config
    */
   public function __construct(StorageClient $storageClient, Config $config) {
     $this->config = $config;
