@@ -84,12 +84,6 @@ class CloudStorage implements FlysystemPluginInterface, ContainerFactoryPluginIn
       'keyFilePath' => $config->get('keyFilePath', ''),
     ]);
 
-    if ($config->get('public')) {
-      $container->getDefinition('stream_wrapper.public')
-        ->setClass('Drupal\flysystem\CloudStorageFlysystemBridge')
-        ->addTag('stream_wrapper', ['scheme' => 'public']);
-    }
-
     return new static($client, $config);
   }
 

@@ -2,7 +2,10 @@
 
 namespace Drupal\flysystem_gcs;
 
+use Drupal\Core\DrupalKernel;
+use Drupal\Core\Site\Settings;
 use Drupal\flysystem\FlysystemBridge;
+use Symfony\Component\HttpFoundation\Request;
 
 class CloudStorageFlysystemBridge extends FlysystemBridge {
 
